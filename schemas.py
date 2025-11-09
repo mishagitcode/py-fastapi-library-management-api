@@ -4,7 +4,6 @@ from pydantic import BaseModel
 
 
 class AuthorBase(BaseModel):
-    id: int
     name: str
     bio: str
 
@@ -14,13 +13,13 @@ class AuthorCreate(AuthorBase):
 
 
 class AuthorList(AuthorBase):
+    id: int
 
     class Config:
         orm_mode = True
 
 
 class BookBase(BaseModel):
-    id: int
     title: str
     summary: str
     publication_date: date
@@ -32,6 +31,7 @@ class BookCreate(BookBase):
 
 
 class BookList(BookBase):
+    id: int
 
     class Config:
         orm_mode = True
