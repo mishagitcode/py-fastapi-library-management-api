@@ -25,7 +25,7 @@ def root():
     return {"message": "Hello world!"}
 
 
-@app.post("/create_author/", response_model=schemas.AuthorBase)
+@app.post("/create_author/", response_model=schemas.AuthorList)
 def create_author(
     author: schemas.AuthorCreate,
     db: Session = Depends(get_db)
@@ -33,7 +33,7 @@ def create_author(
     return crud.create_author(db=db, author=author)
 
 
-@app.get("/authors/", response_model=List[schemas.AuthorBase])
+@app.get("/authors/", response_model=List[schemas.AuthorList])
 def read_authors(
     skip: int = 0,
     limit: int = 10,
@@ -42,7 +42,7 @@ def read_authors(
     return crud.get_all_authors(db=db, skip=skip, limit=limit)
 
 
-@app.get("/authors/{author_id}", response_model=schemas.AuthorBase)
+@app.get("/authors/{author_id}", response_model=schemas.AuthorList)
 def read_author(
     author_id: int,
     db: Session = Depends(get_db)
@@ -53,7 +53,7 @@ def read_author(
     return author
 
 
-@app.post("/create_book/", response_model=schemas.BookBase)
+@app.post("/create_book/", response_model=schemas.BookList)
 def create_book(
     book: schemas.BookCreate,
     db: Session = Depends(get_db)
@@ -64,7 +64,7 @@ def create_book(
     return crud.create_book(db=db, book=book)
 
 
-@app.get("/books/", response_model=List[schemas.BookBase])
+@app.get("/books/", response_model=List[schemas.BookList])
 def read_books(
     skip: int = 0,
     limit: int = 10,
